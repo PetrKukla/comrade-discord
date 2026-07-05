@@ -1,6 +1,6 @@
 {
     "name": "comrade-discord",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A lightweight, strictly-typed wrapper for Discord.js slash commands and their interaction routing.",
     "license": "MIT",
     "files": [
