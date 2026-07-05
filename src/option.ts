@@ -43,9 +43,9 @@ export type Option =
     | ({ type: 'attachment' } & BaseOption)
     | ({ type: 'boolean' } & BaseOption)
     | ({
-    type: 'channel';
-    channelTypes: ApplicationCommandOptionAllowedChannelType[];
-} & BaseOption)
+          type: 'channel';
+          channelTypes: ApplicationCommandOptionAllowedChannelType[];
+      } & BaseOption)
     | ({ type: 'integer' } & BaseOption)
     | ({ type: 'mentionable' } & BaseOption)
     | ({ type: 'number' } & BaseOption)
@@ -56,30 +56,30 @@ export type Option =
 export type OptionValue<T> = T extends { type: 'string' }
     ? string
     : T extends { type: 'number' }
+      ? number
+      : T extends { type: 'integer' }
         ? number
-        : T extends { type: 'integer' }
-            ? number
-            : T extends { type: 'boolean' }
-                ? boolean
-                : T extends { type: 'attachment' }
-                    ? Attachment
-                    : T extends { type: 'user' }
-                        ? User
-                        : T extends { type: 'role' }
-                            ? Role | APIRole
-                            : T extends { type: 'mentionable' }
-                                ? // TODO: Řešit nějak APIRole?
-                                | User
-                                | Role
-                                | GuildMember
-                                | APIRole
-                                | APIInteractionDataResolvedGuildMember
-                                : T extends {
-                                        type: 'channel';
-                                        channelTypes: readonly ChannelType[];
-                                    }
-                                    ? ChannelFromTypes<T['channelTypes']>
-                                    : never;
+        : T extends { type: 'boolean' }
+          ? boolean
+          : T extends { type: 'attachment' }
+            ? Attachment
+            : T extends { type: 'user' }
+              ? User
+              : T extends { type: 'role' }
+                ? Role | APIRole
+                : T extends { type: 'mentionable' }
+                  ? // TODO: Řešit nějak APIRole?
+                        | User
+                        | Role
+                        | GuildMember
+                        | APIRole
+                        | APIInteractionDataResolvedGuildMember
+                  : T extends {
+                          type: 'channel';
+                          channelTypes: readonly ChannelType[];
+                      }
+                    ? ChannelFromTypes<T['channelTypes']>
+                    : never;
 
 export type OptionsToObject<T extends readonly Option[]> = {
     [O in T[number] as O['name']]: O['required'] extends true
