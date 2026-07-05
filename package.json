@@ -3,10 +3,22 @@
     "version": "1.0.0",
     "description": "A lightweight, strictly-typed wrapper for Discord.js slash commands and their interaction routing.",
     "license": "MIT",
+    "files": [
+        "dist"
+    ],
     "type": "module",
-    "module": "index.ts",
+    "main": "dist/index.js",
+    "module": "src/index.ts",
+    "types": "dist/index.d.ts",
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "bun build.ts"
+    },
     "devDependencies": {
         "@types/bun": "latest",
+        "bun-plugin-dts": "^0.4.0",
         "oxfmt": "^0.57.0",
         "oxlint": "^1.72.0"
     },

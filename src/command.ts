@@ -69,8 +69,8 @@ export type CommandCtx<
     (TOptions['length'] extends 0
         ? Record<string, never>
         : {
-            options: OptionsToObject<TOptions>;
-        });
+              options: OptionsToObject<TOptions>;
+          });
 
 export type Command<
     TContexts extends InteractionContextType[],
